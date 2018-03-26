@@ -21,6 +21,7 @@ Detailed documentation is available [here](https://dylan-randall.com/documentati
 ## Stack Usage
 First you must create a Stack object:
 ```php
+use Ptypes\Stack;
 $stack = new Stack(2);
 ```
 Stacks have a minimum size of 2.
@@ -29,6 +30,7 @@ From here you have access to the methods of the stack object.
 Note: the push and pop methods can be chained, however all other methods will end the chain.
 e.g:
 ```php
+use Ptypes\Stack;
 $stack->push(1)->push(2)->pop()->size(); // returns the size of the stack after the pushes and pops.
 ```
 
@@ -46,6 +48,7 @@ public function push($item)
 
 Example:
 ```php
+use Ptypes\Stack;
 $stack->push(1);
 ```
 
@@ -59,6 +62,7 @@ public function pop()
 
 Example:
 ```php
+use Ptypes\Stack;
 $stack->pop();
 ```
 
@@ -75,6 +79,7 @@ public function is_empty()
 
 Example:
 ```php
+use Ptypes\Stack;
 $stack->is_empty();
 ```
 
@@ -90,6 +95,7 @@ public function size()
 
 Example:
 ```php
+use Ptypes\Stack;
 $stack->size();
 ```
 
@@ -105,6 +111,7 @@ public function peek()
 
 Example:
 ```php
+use Ptypes\Stack;
 $stack->peek();
 ```
 
@@ -121,6 +128,9 @@ public function count()
 
 Example:
 ```php
+use Ptypes\Stack;
+$stack = new Stack(2);
+$stack->push('one item');
 count($stack);
 ```
 
@@ -136,6 +146,9 @@ public function __toString()
 
 Example:
 ```php
+use Ptypes\Stack;
+$stack = new Stack(2);
+$stack->push('one item');
 echo $stack;
 ```
 
