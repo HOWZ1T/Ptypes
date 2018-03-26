@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+  <parser>
+    <target>documentation/parser/output</target>
+  </parser>
+  <transformer>
+    <target>documentation/transformer/output</target>
+  </transformer>
+  <files>
+    <directory>./Ptypes</directory>
+  </files>
+</phpdoc>

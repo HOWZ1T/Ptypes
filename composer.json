@@ -1,0 +1,32 @@
+{
+    "name": "howz1t/ptypes",
+    "description": "A collection of data types.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dylan Randall",
+            "email": "dylan.d.randall@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.7"
+    },
+	"autoload": {
+		"psr-4": {
+			"Ptypes\\Exceptions\\": "./Ptypes/Exceptions/",
+			"Ptypes\\": "./Ptypes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Ptypes\\Test\\": "./Ptypes/Test"
+		}
+	},
+	"scripts": {
+		"test": "phpunit",
+		"prepare": "prepare"
+	}
+}

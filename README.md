@@ -143,4 +143,4 @@ Any contributions WITHOUT test units will NOT be accepted.
 
 
 ## Author
-- [Dylan Randall aka HOWZ1T](https://github.com/howz1t)
+[Dylan Randall aka HOWZ1T](https://github.com/howz1t)
