@@ -1,5 +1,5 @@
 # Ptypes [WIP]
-[![Packagist](https://img.shields.io/packagist/v/symfony/symfony.svg)](https://packagist.org/packages/howz1t/ptypes) [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/HOWZ1T/Ptypes/blob/master/LICENSE.md) [![Build Status](https://travis-ci.org/HOWZ1T/Ptypes.svg?branch=master)](https://travis-ci.org/HOWZ1T/Ptypes)
+[![Packagist](https://img.shields.io/packagist/v/symfony/symfony.svg)](https://packagist.org/packages/howz1t/ptypes) [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/HOWZ1T/Ptypes/blob/master/LICENSE.md) [![Build Status](https://travis-ci.org/HOWZ1T/Ptypes.svg?branch=master)](https://travis-ci.org/HOWZ1T/Ptypes) [![Scrutinizer](https://img.shields.io/scrutinizer/g/filp/whoops.svg)](https://scrutinizer-ci.com/g/HOWZ1T/Ptypes)
 ## This package is currently a Work In Progress.
 This package provides useful data types for use in PHP.
 
