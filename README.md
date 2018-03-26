@@ -1,4 +1,5 @@
 # Ptypes [WIP]
+[![Packagist](https://img.shields.io/packagist/v/symfony/symfony.svg)](https://packagist.org/packages/howz1t/ptypes)
 ## This package is currently a Work In Progress.
 This package provides useful data types for use in PHP.
 
