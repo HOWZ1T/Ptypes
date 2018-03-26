@@ -11,6 +11,9 @@ composer require howz1t/Ptypes
 ## License
 You're free to use this package which is licensed under the [MIT-LICENSE](LICENSE.md)
 
+## Documentation
+Detailed documentation is available [here](https://dylan-randall.com/documentation/ptypes/)
+
 ## Current Data Types
 - Stack
 
