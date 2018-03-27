@@ -12,7 +12,10 @@ class DLNode //Doubly Linked Node
 	public $next = null, $prev = null; //A reference to the next and previous node
 	public $data = null; //Data or a reference to data
 	
-	public function __construct() {}
+	public function __construct($data=null) 
+	{
+		$this->data = $data;
+	}
 }
 
 class DoublyLinkedList implements Countable
@@ -116,7 +119,7 @@ class DoublyLinkedList implements Countable
 	public function remove($node)
 	{
 		//check if the node exists
-		if ($this->contains($node) == false) {throw new InvalidArgument("The node given does not exist in this list!"); }
+		if ($this->contains($node) == false) { throw new InvalidArgument("The node given does not exist in this list!"); }
 		
 		if ($node->prev == null)
 		{
@@ -136,6 +139,32 @@ class DoublyLinkedList implements Countable
 			$node->next->prev = $node->prev;
 		}
 		$this->size -= 1;
+	}
+	
+	public function get($index)
+	{
+		if($index < 0 || $index > $this->size-1)
+		{
+			throw new IndexOutOfBounds("The given index is out of bounds!")
+		}
+		
+		if($index == 0)
+		{
+			return $this->firstNode;
+		}
+		
+		if($index == $this->size-1)
+		{
+			return $this->lastNode;
+		}
+		
+		$node = $this->firstNode;
+		for($i = 1; $i <= $index; $i++)
+		{
+			$node = $node->next;
+		}
+		
+		return $node;
 	}
 	
 	public function size()
