@@ -6,6 +6,7 @@ namespace Ptypes;
 
 use Countable;
 use Ptypes\Exceptions\InvalidArgument;
+use Ptypes\Exceptions\IndexOutOfBounds;
 
 class DLNode //Doubly Linked Node
 {
@@ -119,7 +120,10 @@ class DoublyLinkedList implements Countable
 	public function remove($node)
 	{
 		//check if the node exists
-		if ($this->contains($node) == false) { throw new InvalidArgument("The node given does not exist in this list!"); }
+		if ($this->contains($node) === false) 
+		{ 
+			throw new InvalidArgument("The node given does not exist in this list!"); 
+		}
 		
 		if ($node->prev == null)
 		{
