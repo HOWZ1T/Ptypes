@@ -12,7 +12,7 @@ class DLNode //Doubly Linked Node
 	public $next = null, $prev = null; //A reference to the next and previous node
 	public $data = null; //Data or a reference to data
 	
-	public function __construct(){}
+	public function __construct() {}
 }
 
 class DoublyLinkedList implements Countable
@@ -21,16 +21,16 @@ class DoublyLinkedList implements Countable
 	
 	private $size = 0;
 	
-	public function __construct(){}
+	public function __construct() {}
 	
 	public function insert_after($node, $newNode)
 	{
 		//type checks
-		if(get_class($node) != "DLNode"){throw new InvalidArgument("Expected a DLNode, got: ".get_class($node));}
-		if(get_class($newNode) != "DLNode"){throw new InvalidArgument("Expected a DLNode, got: ".get_class($newNode));}
+		if (get_class($node) != "DLNode") {throw new InvalidArgument("Expected a DLNode, got: " . get_class($node)); }
+		if (get_class($newNode) != "DLNode") {throw new InvalidArgument("Expected a DLNode, got: " . get_class($newNode)); }
 		
 		$newNode->prev = $node;
-		if($node->next == null)
+		if ($node->next == null)
 		{
 			$newNode->next = null;
 			$this->lastNode = $newNode;
@@ -47,11 +47,11 @@ class DoublyLinkedList implements Countable
 	public function insert_before($node, $newNode)
 	{
 		//type checks
-		if(get_class($node) != "DLNode"){throw new InvalidArgument("Expected a DLNode, got: ".get_class($node));}
-		if(get_class($newNode) != "DLNode"){throw new InvalidArgument("Expected a DLNode, got: ".get_class($newNode));}
+		if (get_class($node) != "DLNode") {throw new InvalidArgument("Expected a DLNode, got: " . get_class($node)); }
+		if (get_class($newNode) != "DLNode") {throw new InvalidArgument("Expected a DLNode, got: " . get_class($newNode)); }
 		
 		$newNode->next = $node;
-		if($node->prev == null)
+		if ($node->prev == null)
 		{
 			$newNode->prev = null;
 			$this->firstNode = $newNode;
@@ -68,9 +68,9 @@ class DoublyLinkedList implements Countable
 	public function insert_beginning($newNode)
 	{	
 		//type checks
-		if(get_class($newNode) != "DLNode"){throw new InvalidArgument("Expected a DLNode, got: ".get_class($newNode));}
+		if (get_class($newNode) != "DLNode") {throw new InvalidArgument("Expected a DLNode, got: " . get_class($newNode)); }
 		
-		if($this->firstNode == null)
+		if ($this->firstNode == null)
 		{
 			$this->firstNode = $newNode;
 			$this->lastNode = $newNode;
@@ -86,7 +86,7 @@ class DoublyLinkedList implements Countable
 	
 	public function insert_end($newNode)
 	{
-		if($this->lastNode == null)
+		if ($this->lastNode == null)
 		{
 			$this->insert_beginning($newNode);
 		}
@@ -100,13 +100,13 @@ class DoublyLinkedList implements Countable
 	public function contains($node)
 	{
 		//check this so we could possibly avoid list traversal
-		if($node == $this->firstNode || $node == $this->lastNode) {return true;}
+		if ($node == $this->firstNode || $node == $this->lastNode) {return true; }
 		
 		//traverse the list and try to find the node
 		$n = $this->firstNode->next; //we can start one node ahead as we already checked the firstNode
-		while($n != null)
+		while ($n != null)
 		{
-			if($n == $node) {return true;}
+			if ($n == $node) {return true; }
 			$n = $n->next;
 		}
 		
@@ -116,9 +116,9 @@ class DoublyLinkedList implements Countable
 	public function remove($node)
 	{
 		//check if the node exists
-		if($this->contains($node) == false){throw new InvalidArgument("The node given does not exist in this list!");}
+		if ($this->contains($node) == false) {throw new InvalidArgument("The node given does not exist in this list!"); }
 		
-		if($node->prev == null)
+		if ($node->prev == null)
 		{
 			$this->firstNode = $node->next;
 		}
@@ -127,7 +127,7 @@ class DoublyLinkedList implements Countable
 			$node->prev->next = $node->next;
 		}
 		
-		if($node->next == null)
+		if ($node->next == null)
 		{
 			$this->lastNode = $node->prev;
 		}
