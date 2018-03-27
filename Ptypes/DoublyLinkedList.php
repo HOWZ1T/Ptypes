@@ -145,7 +145,7 @@ class DoublyLinkedList implements Countable
 	{
 		if($index < 0 || $index > $this->size-1)
 		{
-			throw new IndexOutOfBounds("The given index is out of bounds!")
+			throw new IndexOutOfBounds("The given index is out of bounds!");
 		}
 		
 		if($index == 0)
