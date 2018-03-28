@@ -50,6 +50,7 @@ class DoublyLinkedList implements Countable
 		if ($node->next == null)
 		{
 			$newNode->next = null;
+			$node->next = $newNode;
 			$this->lastNode = $newNode;
 		}
 		else
@@ -79,6 +80,7 @@ class DoublyLinkedList implements Countable
 		if ($node->prev == null)
 		{
 			$newNode->prev = null;
+			$node->prev = $newNode;
 			$this->firstNode = $newNode;
 		}
 		else
@@ -108,12 +110,12 @@ class DoublyLinkedList implements Countable
 			$this->lastNode = $newNode;
 			$newNode->prev = null;
 			$newNode->next = null;
+			$this->size += 1;
 		}
 		else
 		{
 			$this->insert_before($this->firstNode, $newNode);
 		}
-		$this->size += 1;
 		return $this; //allows chaining
 	}
 
@@ -136,7 +138,6 @@ class DoublyLinkedList implements Countable
 		{
 			$this->insert_after($this->lastNode, $newNode);
 		}
-		$this->size += 1;
 		return $this; //allows chaining
 	}
 	
@@ -151,6 +152,7 @@ class DoublyLinkedList implements Countable
 		//type checks
 		$this->validate_parameter($newNode);
 		$this->insert_end($newNode);
+		return $this; //allows chaining
 	}
 
 	/**
@@ -164,20 +166,14 @@ class DoublyLinkedList implements Countable
 		//type checks
 		$this->validate_parameter($node);
 		
-		//check this so we could possibly avoid list traversal
-		if ($node == $this->firstNode || $node == $this->lastNode) 
+		$n = $this->firstNode;
+		while($n != null)
 		{
-			return true; 
-		}
-
-		//traverse the list and try to find the node
-		$n = $this->firstNode->next; //we can start one node ahead as we already checked the firstNode
-		while ($n != null)
-		{
-			if ($n == $node) 
+			if($n == $node)
 			{
-				return true; 
+				return true;
 			}
+			
 			$n = $n->next;
 		}
 
