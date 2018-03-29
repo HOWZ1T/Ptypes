@@ -1,0 +1,225 @@
+<?php
+
+namespace Ptypes\Test;
+
+use Ptypes\DLNode;
+use Ptypes\DoublyLinkedList;
+use Ptypes\Exceptions\UnexpectedType;
+use Ptypes\Exceptions\InvalidArgument;
+use Ptypes\Exceptions\IndexOutOfBounds;
+
+class DoublyLinkedListTest extends \PHPUnit_Framework_TestCase
+{
+	/** @test */
+	public function it_can_construct()
+	{
+		$list = new DoublyLinkedList();
+		$this->assertNotEquals($list, null);
+	}
+	
+	/** @test */
+	public function insert_after_does_throw_invalid_argument_exception_for_node()
+	{
+		$this->expectException(UnexpectedType::class);
+		$list = new DoublyLinkedList();
+		$list->insert_after("Im not a node!", new DLNode('some data'));
+	}
+	
+	/** @test */
+	public function insert_after_does_throw_invalid_argument_exception_for_new_node()
+	{
+		$this->expectException(UnexpectedType::class);
+		$list = new DoublyLinkedList();
+		$list->insert_after(new DLNode('some data'), "Im not a node!");
+	}
+	
+	/** @test */
+	public function it_can_insert_after()
+	{
+		$list = new DoublyLinkedList();
+		$n = new DLNode('some data');
+		$list->insert($n);
+		$list->insert_after($n, new DLNode('more data'));
+		$this->assertEquals($list->lastNode->data, 'more data');
+	}
+	
+	/** @test */
+	public function insert_before_does_throw_invalid_argument_exception_for_node()
+	{
+		$this->expectException(UnexpectedType::class);
+		$list = new DoublyLinkedList();
+		$list->insert_before("Im not a node!", new DLNode('some data'));
+	}
+	
+	/** @test */
+	public function insert_before_does_throw_invalid_argument_exception_for_new_node()
+	{
+		$this->expectException(UnexpectedType::class);
+		$list = new DoublyLinkedList();
+		$list->insert_before(new DLNode('some data'), "Im not a node!");
+	}
+	
+	/** @test */
+	public function it_can_insert_before()
+	{
+		$list = new DoublyLinkedList();
+		$n = new DLNode('some data');
+		$list->insert($n);
+		$list->insert_before($n, new DLNode('more data'));
+		$this->assertEquals($list->firstNode->data, 'more data');
+	}
+	
+	/** @test */
+	public function insert_beginning_does_throw_invalid_argument_exception_for_new_node()
+	{
+		$this->expectException(UnexpectedType::class);
+		$list = new DoublyLinkedList();
+		$list->insert_beginning("Im not a node!");
+	}
+	
+	/** @test */
+	public function it_can_insert_beginning()
+	{
+		$list = new DoublyLinkedList();
+		$list->insert(new DLNode('more data'));
+		$list->insert_beginning(new DLNode('some data'));
+		$this->assertEquals($list->firstNode->data, 'some data');
+	}
+	
+	/** @test */
+	public function insert_end_does_throw_invalid_argument_exception_for_new_node()
+	{
+		$this->expectException(UnexpectedType::class);
+		$list = new DoublyLinkedList();
+		$list->insert_end("Im not a node!");
+	}
+	
+	/** @test */
+	public function it_can_insert_end()
+	{
+		$list = new DoublyLinkedList();
+		$list->insert(new DLNode('more data'));
+		$list->insert_end(new DLNode('some data'));
+		$this->assertEquals($list->lastNode->data, 'some data');
+	}
+	
+	/** @test */
+	public function insert_does_throw_invalid_argument_exception_for_new_node()
+	{
+		$this->expectException(UnexpectedType::class);
+		$list = new DoublyLinkedList();
+		$list->insert("Im not a node!");
+	}
+	
+	/** @test */
+	public function it_can_insert()
+	{
+		$list = new DoublyLinkedList();
+		$list->insert(new DLNode('more data'));
+		$list->insert(new DLNode('some data'));
+		$this->assertEquals($list->lastNode->data, 'some data');
+	}
+	
+	/** @test */
+	public function contains_throw_invalid_argument_exception_for_node()
+	{
+		$this->expectException(UnexpectedType::class);
+		$list = new DoublyLinkedList();
+		$list->contains("Im not a node!");
+	}
+	
+	/** @test */
+	public function contains_returns_true_for_valid_node()
+	{
+		$list = new DoublyLinkedList();
+		$n = new DLNode('1');
+		$list->insert(new DLNode('2'))->insert(new DLNode('3'))->insert(new DLNode('4'))->insert($n)->insert(new DLNode('5'));
+		$this->assertEquals($list->contains($n), true);
+	}
+	
+	/** @test */
+	public function contains_returns_false_for_invalid_node()
+	{
+		$list = new DoublyLinkedList();
+		$n = new DLNode('1');
+		$list->insert(new DLNode('2'))->insert(new DLNode('3'))->insert(new DLNode('4'))->insert($n)->insert(new DLNode('5'));
+		$this->assertEquals($list->contains(new DLNode('I am not in the list')), false);
+	}
+	
+	/** @test */
+	public function remove_throw_unexpected_type_exception_for_node()
+	{
+		$this->expectException(UnexpectedType::class);
+		$list = new DoublyLinkedList();
+		$list->remove("Im not a node!");
+	}
+	
+	/** @test */
+	public function remove_throw_invalid_argument_exception_for_valid_node_not_in_list()
+	{
+		$this->expectException(InvalidArgument::class);
+		$list = new DoublyLinkedList();
+		$list->insert(new DLNode(1))->insert(new DLNode(2));
+		$list->remove(new DLNode("Im not in the list!"));
+	}
+	
+	/** @test */
+	public function it_can_remove()
+	{
+		$n1 = new DLNode('foo');
+		$n2 = new DLNode('bar');
+		$n3 = new DLNode('baz');
+		$list = new DoublyLinkedList();
+		$list->insert($n1)->insert($n3)->insert($n2);
+		$list->remove($n3);
+		$this->assertEquals($list->firstNode->data . $list->lastNode->data, 'foobar');
+	}
+	
+	/** @test */
+	public function get_throw_unexpected_type_for_non_int_index()
+	{
+		$this->expectException(UnexpectedType::class);
+		$list = new DoublyLinkedList();
+		$list->get('I\'m not an index!');
+	}
+	
+	/** @test */
+	public function get_throw_index_out_of_bounds_for_negative_index()
+	{
+		$this->expectException(IndexOutOfBounds::class);
+		$list = new DoublyLinkedList();
+		$list->insert(new DLNode(1));
+		$list->get(-1);
+	}
+	
+	/** @test */
+	public function get_throw_index_out_of_bounds_for_positive_index()
+	{
+		$this->expectException(IndexOutOfBounds::class);
+		$list = new DoublyLinkedList();
+		$list->insert(new DLNode(1));
+		$list->get(1);
+	}
+	
+	/** @test */
+	public function it_can_get()
+	{
+		$list = new DoublyLinkedList();
+		$list->insert(new DLNode(1))->insert(new DLNode(2))->insert(new DLNode(3));
+		$this->assertEquals($list->get(1)->data, 2);
+	}
+	
+	/** @test */
+	public function it_can_get_size_and_count()
+	{
+		$list = new DoublyLinkedList();
+		for($i = 0; $i < 10; $i++)
+		{
+			$list->insert(new DLNode($i));
+		}
+		$n = new DLNode(11);
+		$list->insert($n);
+		$list->remove($n);
+		$this->assertEquals($list->size() + count($list), 20); //10 + 10 = 10 + 10 i.e: 20 = 20
+	}
+}
