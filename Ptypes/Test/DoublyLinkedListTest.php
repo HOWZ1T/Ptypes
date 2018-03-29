@@ -136,5 +136,90 @@ class DoublyLinkedListTest extends \PHPUnit_Framework_TestCase
 		$list->insert(new DLNode('2'))->insert(new DLNode('3'))->insert(new DLNode('4'))->insert($n)->insert(new DLNode('5'));
 		$this->assertEquals($list->contains($n), true);
 	}
-	//TODO finish unit test
+	
+	/** @test */
+	public function contains_returns_false_for_invalid_node()
+	{
+		$list = new DoublyLinkedList();
+		$n = new DLNode('1');
+		$list->insert(new DLNode('2'))->insert(new DLNode('3'))->insert(new DLNode('4'))->insert($n)->insert(new DLNode('5'));
+		$this->assertEquals($list->contains(new DLNode('I am not in the list')), false);
+	}
+	
+	/** @test */
+	public function remove_throw_unexpected_type_exception_for_node()
+	{
+		$this->expectException(UnexpectedType::class);
+		$list = new DoublyLinkedList();
+		$list->remove("Im not a node!");
+	}
+	
+	/** @test */
+	public function remove_throw_invalid_argument_exception_for_valid_node_not_in_list()
+	{
+		$this->expectException(InvalidArgument::class);
+		$list = new DoublyLinkedList();
+		$list->insert(new DLNode(1))->insert(new DLNode(2));
+		$list->remove(new DLNode("Im not in the list!"));
+	}
+	
+	/** @test */
+	public function it_can_remove()
+	{
+		$n1 = new DLNode('foo');
+		$n2 = new DLNode('bar');
+		$n3 = new DLNode('baz');
+		$list = new DoublyLinkedList();
+		$list->insert($n1)->insert($n3)->insert($n2);
+		$list->remove($n3);
+		$this->assertEquals($list->firstNode->data . $list->lastNode->data, 'foobar');
+	}
+	
+	/** @test */
+	public function get_throw_unexpected_type_for_non_int_index()
+	{
+		$this->expectException(UnexpectedType::class);
+		$list = new DoublyLinkedList();
+		$list->get('I\'m not an index!');
+	}
+	
+	/** @test */
+	public function get_throw_index_out_of_bounds_for_negative_index()
+	{
+		$this->expectException(IndexOutOfBounds::class);
+		$list = new DoublyLinkedList();
+		$list->insert(new DLNode(1));
+		$list->get(-1);
+	}
+	
+	/** @test */
+	public function get_throw_index_out_of_bounds_for_positive_index()
+	{
+		$this->expectException(IndexOutOfBounds::class);
+		$list = new DoublyLinkedList();
+		$list->insert(new DLNode(1));
+		$list->get(1);
+	}
+	
+	/** @test */
+	public function it_can_get()
+	{
+		$list = new DoublyLinkedList();
+		$list->insert(new DLNode(1))->insert(new DLNode(2))->insert(new DLNode(3));
+		$this->assertEquals($list->get(1)->data, 2);
+	}
+	
+	/** @test */
+	public function it_can_get_size_and_count()
+	{
+		$list = new DoublyLinkedList();
+		for($i = 0; $i < 10; $i++)
+		{
+			$list->insert(new DLNode($i));
+		}
+		$n = new DLNode(11);
+		$list->insert($n);
+		$list->remove($n);
+		$this->assertEquals($list->size() + count($list), 20); //10 + 10 = 10 + 10 i.e: 20 = 20
+	}
 }
