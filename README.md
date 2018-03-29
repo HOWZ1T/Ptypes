@@ -24,8 +24,9 @@ Detailed documentation is available [here](https://dylan-randall.com/documentati
 ## Contributing
 
 Contribution is always appreciated. 
-If you are contributing please remember to update the README and provide test units.
-Any contributions WITHOUT test units will NOT be accepted.
+If you are contributing please remember to update the README
+and provide test units. Any contributions WITHOUT test units 
+will NOT be accepted.
 
 
 ## Author
