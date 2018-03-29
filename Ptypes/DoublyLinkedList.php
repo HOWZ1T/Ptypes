@@ -1,7 +1,5 @@
 <?php
 
-//TODO: Unit Test
-
 namespace Ptypes;
 
 use Countable;
