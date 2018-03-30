@@ -7,7 +7,7 @@
 This package provides useful data structures for use in PHP.
 
 ## Progress
-[![progress](http://progressed.io/bar/13)]
+![progress](http://progressed.io/bar/13)
 
 ## Install
 You can install this package via composer:
