@@ -19,14 +19,14 @@ You're free to use this package which is licensed under the [MIT-LICENSE](LICENS
 Detailed documentation is available [here](https://dylan-randall.com/documentation/ptypes/)
 
 ## Current Data Structures
-- Stack
 - Doubly Linked List
+- Queue
+- Stack
 
 ## Contributing
 Contribution is always appreciated. 
 If you are contributing please remember to update the README and provide test units.
 Any contributions WITHOUT test units will NOT be accepted.
-
 
 ## Author
 [Dylan Randall aka HOWZ1T](https://github.com/howz1t)
