@@ -6,6 +6,9 @@
 ## This package is currently a Work In Progress.
 This package provides useful data structures for use in PHP.
 
+## Progress
+<progress value="4" max="30"></progress>
+
 ## Install
 You can install this package via composer:
 ```bash
