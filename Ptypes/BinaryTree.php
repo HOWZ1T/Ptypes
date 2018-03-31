@@ -61,7 +61,35 @@ class BinaryTree
 	
 	public function search($value)
 	{
+		if(gettype($value) != "integer" && gettype($value) != "int" && gettype($value) != "double")
+		{
+			throw new InvalidArgument("Expected a number, got: " . gettype($value) . " !\n");
+		}
 		
+		return $this->recursive_search($value, $this->root);
+	}
+	
+	private function recursive_search($value, $node)
+	{
+		if($node == null)
+		{
+			return null;
+		}
+		
+		$eval = $value - $node->value;
+		if($eval == 0)
+		{
+			return $node;
+		}
+		
+		if($eval < 0)
+		{
+			return $this->recursive_search($value, $node->left);
+		}
+		else if($eval > 0)
+		{
+			return $this->recursive_search($value, $node->right);
+		}
 	}
 	
 	public function traverse($order)
