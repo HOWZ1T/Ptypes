@@ -97,7 +97,7 @@ class BinaryTree
 		switch($order)
 		{
 			case self::IN_ORDER:
-				//TODO
+				$this->in_order_traversal($this->root);
 				break;
 				
 			case self::PRE_ORDER:
@@ -113,9 +113,18 @@ class BinaryTree
 		}
 	}
 	
-	private function in_order_traversal($node, $results)
+	private function in_order_traversal($node)
 	{
+		if ($node == null)
+		{
+			return null;
+		}
 		
+		$this->in_order_traversal($node->left);
+		
+		echo $node->value . " ";
+		
+		$this->in_order_traversal($node->right);
 	}
 	
 	private function validate_parameter($node)
