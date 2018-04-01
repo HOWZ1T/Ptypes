@@ -107,15 +107,19 @@ class BinaryTree
 		switch($order)
 		{
 			case self::IN_ORDER:
-				$this->in_order_traversal($this->root);
-				break;
+				$results = array();
+				$this->in_order_traversal($this->root, $results);
+				return $results;
 				
 			case self::PRE_ORDER:
-				//TODO
-				break;
+				$results = array();
+				$this->pre_order_traversal($this->root, $results);
+				return $results;
 				
 			case self::POST_ORDER:
-				//TODO
+				$results = array();
+				$this->post_order_traversal($this->root, $results);
+				return $results;
 				break;
 				
 			default:
@@ -123,19 +127,44 @@ class BinaryTree
 		}
 	}
 	
-	private function in_order_traversal($node)
+	private function in_order_traversal($node, &$results) //it isimportant that reference to results stays a reference (php pointer) !
 	{
-		//TODO RETURN ARRAY OF RESULTS
 		if ($node == null)
 		{
 			return null;
 		}
 		
-		$this->in_order_traversal($node->left);
+		$this->in_order_traversal($node->left, $results);
 		
-		echo $node->value . " ";
+		array_push($results, $node->value);
 		
-		$this->in_order_traversal($node->right);
+		$this->in_order_traversal($node->right, $results);
+	}
+	
+	private function pre_order_traversal($node, &$results)
+	{
+		if ($node == null)
+		{
+			return null;
+		}
+		
+		array_push($results, $node->value);
+		
+		$this->pre_order_traversal($node->left, $results);
+		$this->pre_order_traversal($node->right, $results);
+	}
+	
+	private function post_order_traversal($node, &$results)
+	{
+		if ($node == null)
+		{
+			return null;
+		}
+		
+		$this->post_order_traversal($node->left, $results);
+		$this->post_order_traversal($node->right, $results);
+		
+		array_push($results, $node->value);
 	}
 	
 	private function validate_parameter($node)
