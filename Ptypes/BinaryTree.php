@@ -14,9 +14,9 @@ class BinaryTree
 	
 	public $root;
 	
-	public function __construct()
+	public function __construct($root=null)
 	{
-		$this->root = null;
+		$this->root = $root;
 	}
 	
 	public function insert($node) //$node is a treenode
@@ -92,6 +92,16 @@ class BinaryTree
 		}
 	}
 	
+	public function delete($value)
+	{
+		//TODO
+	}
+	
+	public function is_complete()
+	{
+		//TODO
+	}
+	
 	public function traverse($order)
 	{
 		switch($order)
@@ -115,6 +125,7 @@ class BinaryTree
 	
 	private function in_order_traversal($node)
 	{
+		//TODO RETURN ARRAY OF RESULTS
 		if ($node == null)
 		{
 			return null;
