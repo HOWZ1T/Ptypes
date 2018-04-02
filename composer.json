@@ -27,6 +27,7 @@
 	},
 	"scripts": {
 		"test": "phpunit",
-		"prepare": "prepare"
+		"prepare": "prepare",
+		"push_dev": "push_dev"
 	}
 }

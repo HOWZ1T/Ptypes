@@ -15,6 +15,8 @@ class BinaryTree
 	
 	public $root;
 	
+	//TODO IMPLEMENT COUNTER
+	
 	public function __construct(&$root=null)
 	{
 		$this->root = $root;
