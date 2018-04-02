@@ -145,7 +145,7 @@ class BinaryTreeTest extends \PHPUnit_Framework_TestCase
 	}
 	
 	/** @test */
-	public function it_can_get_nodes_given_level()
+	public function it_can_traverse_in_level_order()
 	{
 		$tree = new BinaryTree();
 		$tree->insert(new TreeNode(10));
@@ -154,31 +154,25 @@ class BinaryTreeTest extends \PHPUnit_Framework_TestCase
 		$tree->insert(new TreeNode(2));
 		$tree->insert(new TreeNode(6));
 		$tree->insert(new TreeNode(3));
-		$this->expectOutputString("lol");
+		$this->expectOutputString("10 5 12 2 6 3 ");
 		
-		print_r($tree->traverse(BinaryTree::IN_ORDER));
-		
-		echo "\n\n";
-		echo $tree->root->value . " ROOT\n";
-		echo $tree->root->left->value . " ROOT LEFT\n";
-		echo $tree->root->right->value . " ROOT RIGHT\n";
-		echo $tree->root->left->left->value . "  ROOT LEFT -LEFT\n";
-		echo $tree->root->left->right->value . "  ROOT LEFT -RIGHT\n";
-		echo $tree->root->left->left->right->value . "  ROOT LEFT -LEFT -RIGHT\n\n";
-		
-		print_r($tree->get_level(3));
-		
-		echo "\n\n";
+		/*
+							10
+						  /	   \
+						5		12
+					  /   \
+					 2     6
+					  \
+				       3
+		*/
 		
 		$nodes = $tree->traverse(BinaryTree::LEVEL_ORDER);
-		
 		foreach($nodes as $i => $level)
 		{
 			foreach($level as $j => $node)
 			{
 				echo $node->value . " ";
 			}
-			echo "\n";
 		}
 	}
 }
