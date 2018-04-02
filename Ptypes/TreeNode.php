@@ -17,6 +17,7 @@ class TreeNode
 		{
 			throw new InvalidArgument("Expected a number, got: " . gettype($value) . "!");
 		}
+		
 		$this->value = $value;
 		$this->data = $data;
 		$this->left = null;
