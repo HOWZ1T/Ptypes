@@ -175,4 +175,18 @@ class BinaryTreeTest extends \PHPUnit_Framework_TestCase
 			}
 		}
 	}
+	
+	/** @test */
+	public function it_can_count()
+	{
+		$tree = new BinaryTree();
+		$tree->insert(new TreeNode(50));
+		$tree->insert(new TreeNode(40));
+		$tree->insert(new TreeNode(70));
+		$tree->insert(new TreeNode(60));
+		$tree->insert(new TreeNode(80));
+		$tree->insert(new TreeNode(90));
+		$tree->delete(50);
+		$this->assertEquals((count($tree) + $tree->size()), 12);
+	}
 }

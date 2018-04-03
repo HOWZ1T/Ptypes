@@ -2,11 +2,12 @@
 
 namespace Ptypes;
 
+use Countable;
 use Ptypes\TreeNode;
 use Ptypes\Exceptions\UnexpectedType;
 use Ptypes\Exceptions\InvalidArgument;
 
-class BinaryTree
+class BinaryTree implements Countable
 {
 	public const IN_ORDER = 0;
 	public const PRE_ORDER = 1;
@@ -15,16 +16,24 @@ class BinaryTree
 	
 	public $root;
 	
-	//TODO IMPLEMENT COUNTER
+	private $count = 0;
 	
 	public function __construct(&$root=null)
 	{
+		if($root != null)
+		{
+			$this->validate_parameter($root);
+		}
+		
 		$this->root = $root;
+		$this->count = ($root == null) ? 0 : 1;
 	}
 	
 	public function insert($node) //$node is a treenode
 	{
 		$this->validate_parameter($node);
+		
+		$this->count++;
 		
 		if($this->root == null)
 		{
@@ -133,6 +142,7 @@ class BinaryTree
 			$this->delete_recursive($this->root, $node->value);
 		}
 		
+		$this->count--;
 		return $this; //allows chaining
 	}
 	
@@ -174,9 +184,9 @@ class BinaryTree
 		return $parent;
 	}
 	
-	public function is_complete()
+	public function size()
 	{
-		//TODO
+		return $this->count + 1;
 	}
 	
 	public function get_height()
@@ -328,5 +338,18 @@ class BinaryTree
 		{
 			throw new UnexpectedType("Expected a Ptypes\TreeNode, got: " . get_class($node));
 		}
+	}
+	
+	//Overriding functions & magic methods below
+
+	/**
+	 * Count, same functionality as Size.
+	 * Overrides the default count function call on this class.
+	 *
+	 * @return int
+	 */
+	public function count()
+	{
+		return $this->count + 1;
 	}
 }
